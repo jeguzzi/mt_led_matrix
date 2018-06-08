@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="name" default="$(optenv HOSTNAME)"/>
+  <arg name="delay" default="0.2"/>
+
+  <!-- One of CP437, LCD, SINCLAIR, TINY, UKR -->
+
+  <arg name="font" default="lcd"/>
+
+  <group ns="$(eval arg('name') or '/')">
+
+    <node name="led_matrix" pkg="mt_led_matrix" type="led_matrix_node.py" output="screen">
+      <param name="delay" value="$(arg delay)"/>
+      <param name="font" value="$(arg font)"/>
+    </node>
+
+  </group>
+
+</launch>
