@@ -37,7 +37,8 @@ class LedMatrix(object):
         self.device.brightness(value)
 
     def update_buffer(self, msg):
-        self.device._buffer = msg.data
+        for i, v in enumerate(msg.data):
+            self.device._buffer[i] = ord(v)
         self.device.flush()
 
     def on_shutdown(self):
